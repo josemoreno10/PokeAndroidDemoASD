@@ -36,7 +36,7 @@
             android:id="@+id/buttonAsyncTask" />
 
         <Button
-            android:text="FRAGMENTS"
+            android:text="FRAGMENTS - BASE DE DATOS SQLITE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/buttonFragment" />

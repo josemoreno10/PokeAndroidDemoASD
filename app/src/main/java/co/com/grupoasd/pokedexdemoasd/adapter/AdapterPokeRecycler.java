@@ -15,6 +15,7 @@ import java.util.List;
 
 import co.com.grupoasd.pokedexdemoasd.R;
 import co.com.grupoasd.pokedexdemoasd.object.Pokemon;
+import co.com.grupoasd.pokedexdemoasd.persistencia.modelo.Favoritos;
 
 /**
  * Created by ASD on 28/12/2016.
@@ -25,9 +26,11 @@ public class AdapterPokeRecycler extends RecyclerView.Adapter<AdapterPokeRecycle
     private List<Pokemon> datos;
     View.OnClickListener listener;
     private Context context;
+    List<Favoritos> favoritosList;
 
-    public AdapterPokeRecycler(List<Pokemon> datos, Context context){
+    public AdapterPokeRecycler(List<Pokemon> datos, List<Favoritos> favoritosList, Context context){
         this.datos = datos;
+        this.favoritosList = favoritosList;
         this.context = context;
     }
 
@@ -52,6 +55,21 @@ public class AdapterPokeRecycler extends RecyclerView.Adapter<AdapterPokeRecycle
                 .error(R.mipmap.ic_launcher)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .into(holder.getImageViewPoke());
+
+        if(isPokemonFavorito(datos.get(position).getNombre())){
+            holder.getImageViewFavorito().setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite));
+        }else{
+            holder.getImageViewFavorito().setImageDrawable(context.getResources().getDrawable(R.drawable.ic_no_favorite));
+        }
+    }
+
+    private boolean isPokemonFavorito(String nombre){
+        for (Favoritos favoritos: favoritosList){
+            if(favoritos.getNombre().equals(nombre)){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

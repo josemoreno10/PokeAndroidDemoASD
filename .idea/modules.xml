@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PokeAndroidDemoASD.iml" filepath="$PROJECT_DIR$/PokeAndroidDemoASD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PokedexDemoASD.iml" filepath="$PROJECT_DIR$/PokedexDemoASD.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

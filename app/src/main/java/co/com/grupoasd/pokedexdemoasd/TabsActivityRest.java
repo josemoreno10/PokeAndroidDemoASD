@@ -20,11 +20,13 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import co.com.grupoasd.pokedexdemoasd.adapter.AdapterPokeRecycler;
 import co.com.grupoasd.pokedexdemoasd.object.Pokemon;
 import co.com.grupoasd.pokedexdemoasd.object.PokemonResults;
+import co.com.grupoasd.pokedexdemoasd.persistencia.modelo.Favoritos;
 import co.com.grupoasd.pokedexdemoasd.service.iface.PokeApiIface;
 import co.com.grupoasd.pokedexdemoasd.service.impl.PokeApiImpl;
 
@@ -182,7 +184,7 @@ public class TabsActivityRest extends AppCompatActivity {
             dismissProgressDialog();
             if (result) {
                 if(!pokemons.isEmpty()){
-                    final AdapterPokeRecycler adaptador = new AdapterPokeRecycler(pokemons, TabsActivityRest.this);
+                    final AdapterPokeRecycler adaptador = new AdapterPokeRecycler(pokemons, new ArrayList<Favoritos>(), TabsActivityRest.this);
                     recView.setAdapter(adaptador);
                     recView.setLayoutManager(
                             new LinearLayoutManager(TabsActivityRest.this,LinearLayoutManager.VERTICAL,false));

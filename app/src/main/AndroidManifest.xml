@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".TabsActivityRest" />
-        <activity android:name=".FragmentsActivity" />
+        <activity android:name=".FragmentsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
     </application>
 
 </manifest>

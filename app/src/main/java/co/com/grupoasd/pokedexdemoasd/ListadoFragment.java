@@ -27,7 +27,9 @@ import java.util.List;
 
 import co.com.grupoasd.pokedexdemoasd.adapter.AdapterPokeRecycler;
 import co.com.grupoasd.pokedexdemoasd.object.Pokemon;
+import co.com.grupoasd.pokedexdemoasd.persistencia.FavoritosDao;
 import co.com.grupoasd.pokedexdemoasd.persistencia.PokemonDBController;
+import co.com.grupoasd.pokedexdemoasd.persistencia.modelo.Favoritos;
 import co.com.grupoasd.pokedexdemoasd.service.iface.PokeApiIface;
 import co.com.grupoasd.pokedexdemoasd.service.impl.PokeApiImpl;
 
@@ -44,6 +46,8 @@ public class ListadoFragment extends Fragment {
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
     DetalleFragment detalleFragment;
+    PokemonDBController dbController;
+    List<Favoritos> favoritosList;
 
     public ListadoFragment() {
         // Required empty public constructor
@@ -52,8 +56,15 @@ public class ListadoFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adaptador = new AdapterPokeRecycler(pokemons, getContext());
+        dbController = new PokemonDBController(getContext());
+        favoritosList = dbController.getFavoritos();
+        adaptador = new AdapterPokeRecycler(pokemons, favoritosList, getContext());
         prefs = getActivity().getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -171,16 +182,17 @@ public class ListadoFragment extends Fragment {
         protected void onPostExecute(Pokemon pokemon) {
             dismissProgressDialog();
             fragmentManager = getActivity().getSupportFragmentManager();
-            if(detalleFragment != null){
+            /*if(detalleFragment != null){
                 transaction = fragmentManager.beginTransaction();
                 transaction.remove(detalleFragment).commit();
-            }
+            }*/
             transaction = fragmentManager.beginTransaction();
             detalleFragment = new DetalleFragment();
             detalleFragment.setPokemon(pokemon);
+            detalleFragment.setFavoritosList(favoritosList);
             transaction.replace(R.id.contenedor_fragment, detalleFragment);
             transaction.addToBackStack(null);
-            transaction.commitAllowingStateLoss();
+            transaction.commit();
         }
     }
 

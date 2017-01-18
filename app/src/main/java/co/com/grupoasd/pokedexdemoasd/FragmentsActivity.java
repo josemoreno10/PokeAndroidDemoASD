@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -111,6 +112,11 @@ public class FragmentsActivity extends AppCompatActivity {
         pokeApi = new PokeApiImpl();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
     public void actionBuscar(String url) {
         if (radioButtonPorID.isChecked()) {
             if (!textBuscar.getText().toString().equals("")) {
@@ -163,19 +169,19 @@ public class FragmentsActivity extends AppCompatActivity {
             if (result) {
                 if (!pokemons.isEmpty()) {
                     fragmentManager = getSupportFragmentManager();
-                    if(fragmentManager.getFragments()!=null){
-                        for (Fragment fragment : fragmentManager.getFragments()) {
-                            if(!(fragment instanceof SupportRequestManagerFragment)){
-                                transaction = fragmentManager.beginTransaction();
-                                transaction.remove(fragment).commitAllowingStateLoss();
-                            }
-                        }
+                    if (listadoFragment != null) {
+                        transaction = fragmentManager.beginTransaction();
+                        listadoFragment = new ListadoFragment();
+                        listadoFragment.setPokemons(pokemons);
+                        transaction.replace(R.id.contenedor_fragment, listadoFragment);
+                        transaction.commit();
+                    } else {
+                        transaction = fragmentManager.beginTransaction();
+                        listadoFragment = new ListadoFragment();
+                        listadoFragment.setPokemons(pokemons);
+                        transaction.add(R.id.contenedor_fragment, listadoFragment);
+                        transaction.commit();
                     }
-                    transaction = fragmentManager.beginTransaction();
-                    listadoFragment = new ListadoFragment();
-                    listadoFragment.setPokemons(pokemons);
-                    transaction.add(R.id.contenedor_fragment, listadoFragment);
-                    transaction.commitAllowingStateLoss();
                 }
             }
         }

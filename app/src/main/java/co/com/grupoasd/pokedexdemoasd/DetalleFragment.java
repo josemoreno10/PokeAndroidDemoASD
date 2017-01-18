@@ -13,8 +13,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.List;
+
 import co.com.grupoasd.pokedexdemoasd.object.Pokemon;
 import co.com.grupoasd.pokedexdemoasd.persistencia.PokemonDBController;
+import co.com.grupoasd.pokedexdemoasd.persistencia.modelo.Favoritos;
 
 
 public class DetalleFragment extends Fragment {
@@ -30,6 +33,7 @@ public class DetalleFragment extends Fragment {
     TextView textViewHabitad;
     Pokemon pokemon;
     PokemonDBController dbController;
+    List<Favoritos> favoritosList;
 
     public DetalleFragment() {
         // Required empty public constructor
@@ -37,6 +41,10 @@ public class DetalleFragment extends Fragment {
 
     public void setPokemon(Pokemon pokemon) {
         this.pokemon = pokemon;
+    }
+
+    public void setFavoritosList(List<Favoritos> favoritosList) {
+        this.favoritosList = favoritosList;
     }
 
     @Override
@@ -86,7 +94,21 @@ public class DetalleFragment extends Fragment {
                     }
                 }
             });
+            if(isPokemonFavorito(pokemon.getNombre())){
+                imageViewFav.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite));
+            }else{
+                imageViewFav.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_favorite));
+            }
         }
+    }
+
+    private boolean isPokemonFavorito(String nombre){
+        for (Favoritos favoritos: favoritosList){
+            if(favoritos.getNombre().equals(nombre)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private String getTipos(String[] type) {
