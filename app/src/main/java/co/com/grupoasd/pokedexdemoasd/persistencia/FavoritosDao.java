@@ -45,6 +45,11 @@ public class FavoritosDao {
                 null, null);
     }
 
+    public long eliminarFavorito(String nombre){
+        return database.delete(favoritosCampos.getDatabaseTable(),
+                favoritosCampos.getNombre() + " = '" + nombre+"'", null);
+    }
+
     private ContentValues createContentValues(String nombre, String urlImagen, String urlPokemon) {
         ContentValues values = new ContentValues();
         values.put(favoritosCampos.getNombre(), nombre);

@@ -28,6 +28,14 @@ public class PokemonDBController {
         return false;
     }
 
+    public boolean eliminararFavorito(String nombre) {
+        long res = favoritosDao.eliminarFavorito(nombre);
+        if (res > 0) {
+            return true;
+        }
+        return false;
+    }
+
     public List<Favoritos> getFavoritos(){
         List<Favoritos> favoritosList = new ArrayList<>();
         Favoritos favoritos;

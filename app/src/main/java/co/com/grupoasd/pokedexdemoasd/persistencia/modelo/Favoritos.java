@@ -11,7 +11,12 @@ public class Favoritos {
     private String urlPokemon;
 
     public Favoritos(){
+    }
 
+    public Favoritos(String nombre, String urlImage, String urlPokemon) {
+        this.nombre = nombre;
+        this.urlImage = urlImage;
+        this.urlPokemon = urlPokemon;
     }
 
     public String getNombre() {

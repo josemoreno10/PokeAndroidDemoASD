@@ -86,11 +86,22 @@ public class DetalleFragment extends Fragment {
             imageViewFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(dbController.insertarFavorito(pokemon.getNombre(),pokemon.getPokemonDetalle().getFrontDefaultImage(),pokemon.getUrl())){
-                        imageViewFav.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite));
-                        Toast.makeText(getContext(),"Pokemon agregado a favoritos correctamente", Toast.LENGTH_LONG).show();
+                    if(isPokemonFavorito(pokemon.getNombre())){
+                        if(dbController.eliminararFavorito(pokemon.getNombre())){
+                            eliminarPokemonLista(pokemon.getNombre());
+                            imageViewFav.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_favorite));
+                            Toast.makeText(getContext(),"Favorito eliminado correctamente", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getContext(),"Ocurrio un error eliminando favorito", Toast.LENGTH_SHORT).show();
+                        }
                     }else{
-                        Toast.makeText(getContext(),"Ocurrio un error guardando favorito", Toast.LENGTH_LONG).show();
+                        if(dbController.insertarFavorito(pokemon.getNombre(),pokemon.getPokemonDetalle().getFrontDefaultImage(),pokemon.getUrl())){
+                            favoritosList.add(new Favoritos(pokemon.getNombre(), pokemon.getPokemonDetalle().getFrontDefaultImage(), pokemon.getUrl()));
+                            imageViewFav.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite));
+                            Toast.makeText(getContext(),"Pokemon agregado a favoritos correctamente", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getContext(),"Ocurrio un error guardando favorito", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             });
@@ -109,6 +120,14 @@ public class DetalleFragment extends Fragment {
             }
         }
         return false;
+    }
+
+    private void eliminarPokemonLista(String nombre){
+        for (Favoritos favoritos: favoritosList){
+            if(favoritos.getNombre().equals(nombre)){
+                favoritosList.remove(favoritos);
+            }
+        }
     }
 
     private String getTipos(String[] type) {

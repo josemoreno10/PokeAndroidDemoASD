@@ -182,10 +182,6 @@ public class ListadoFragment extends Fragment {
         protected void onPostExecute(Pokemon pokemon) {
             dismissProgressDialog();
             fragmentManager = getActivity().getSupportFragmentManager();
-            /*if(detalleFragment != null){
-                transaction = fragmentManager.beginTransaction();
-                transaction.remove(detalleFragment).commit();
-            }*/
             transaction = fragmentManager.beginTransaction();
             detalleFragment = new DetalleFragment();
             detalleFragment.setPokemon(pokemon);
@@ -199,7 +195,6 @@ public class ListadoFragment extends Fragment {
     private void inicializarProgressDialog() {
         TextView title = new TextView(getContext());
         title.setText("Cargando pokemon");
-        //title.setBackgroundColor(Color.argb(255, 3, 169, 244));
         title.setPadding(10, 10, 10, 10);
         title.setGravity(Gravity.CENTER);
         title.setTextColor(Color.BLACK);

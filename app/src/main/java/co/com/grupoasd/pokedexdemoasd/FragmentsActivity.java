@@ -1,18 +1,18 @@
 package co.com.grupoasd.pokedexdemoasd;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Menu;
@@ -25,8 +25,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.manager.SupportRequestManagerFragment;
 
 import java.util.List;
 
@@ -54,11 +52,21 @@ public class FragmentsActivity extends AppCompatActivity {
     private PokeApiIface pokeApi;
     List<Pokemon> pokemons;
     ListadoFragment listadoFragment;
+    private Toolbar appbar;
+    private DrawerLayout drawerLayout;
+    private NavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_tabs_fragment);
+        setContentView(R.layout.activity_main_nav);
+
+        appbar = (Toolbar) findViewById(R.id.appbar);
+        setSupportActionBar(appbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_nav_menu);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         radioGroup = (RadioGroup) findViewById(R.id.radio_criterio);
         radioButtonPorID = (RadioButton) findViewById(R.id.radioButtonPorID);
         radioButtonTodos = (RadioButton) findViewById(R.id.radioButtonTodos);
@@ -109,7 +117,59 @@ public class FragmentsActivity extends AppCompatActivity {
                 actionBuscar("");
             }
         });
+
+
+        navView = (NavigationView) findViewById(R.id.navview);
+        navView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        Intent intent;
+                        switch (menuItem.getItemId()) {
+                            case R.id.menu_seccion_1:
+                                intent = new Intent(FragmentsActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                break;
+                            case R.id.menu_seccion_2:
+                                intent = new Intent(FragmentsActivity.this, RecyclerViewActivity.class);
+                                startActivity(intent);
+                                break;
+                            case R.id.menu_seccion_3:
+                                intent = new Intent(FragmentsActivity.this, TabsActivityRest.class);
+                                startActivity(intent);
+                                break;
+                            case R.id.menu_seccion_4:
+                                intent = new Intent(FragmentsActivity.this, FragmentsActivity.class);
+                                startActivity(intent);
+                                break;
+                        }
+                        drawerLayout.closeDrawers();
+                        return true;
+                    }
+                });
         pokeApi = new PokeApiImpl();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_fragment, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
