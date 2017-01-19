@@ -1,4 +1,4 @@
-package co.com.grupoasd.pokedexdemoasd;
+package co.com.grupoasd.pokedexdemoasd.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -21,13 +21,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
+import co.com.grupoasd.pokedexdemoasd.R;
 import co.com.grupoasd.pokedexdemoasd.adapter.AdapterPokeRecycler;
 import co.com.grupoasd.pokedexdemoasd.object.Pokemon;
-import co.com.grupoasd.pokedexdemoasd.persistencia.FavoritosDao;
 import co.com.grupoasd.pokedexdemoasd.persistencia.PokemonDBController;
 import co.com.grupoasd.pokedexdemoasd.persistencia.modelo.Favoritos;
 import co.com.grupoasd.pokedexdemoasd.service.iface.PokeApiIface;

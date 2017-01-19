@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import co.com.grupoasd.pokedexdemoasd.fragments.ListadoFragment;
 import co.com.grupoasd.pokedexdemoasd.object.Pokemon;
 import co.com.grupoasd.pokedexdemoasd.object.PokemonResults;
 import co.com.grupoasd.pokedexdemoasd.service.iface.PokeApiIface;
@@ -65,6 +66,7 @@ public class FragmentsActivity extends AppCompatActivity {
         setSupportActionBar(appbar);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_nav_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("LO que sea");
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         radioGroup = (RadioGroup) findViewById(R.id.radio_criterio);

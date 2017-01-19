@@ -1,4 +1,4 @@
-package co.com.grupoasd.pokedexdemoasd;
+package co.com.grupoasd.pokedexdemoasd.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
+import co.com.grupoasd.pokedexdemoasd.R;
 import co.com.grupoasd.pokedexdemoasd.object.Pokemon;
 import co.com.grupoasd.pokedexdemoasd.persistencia.PokemonDBController;
 import co.com.grupoasd.pokedexdemoasd.persistencia.modelo.Favoritos;
@@ -126,6 +127,7 @@ public class DetalleFragment extends Fragment {
         for (Favoritos favoritos: favoritosList){
             if(favoritos.getNombre().equals(nombre)){
                 favoritosList.remove(favoritos);
+                return;
             }
         }
     }
