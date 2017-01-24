@@ -15,4 +15,9 @@
         android:id="@+id/menu_seccion_4"
         android:icon="@mipmap/ic_launcher"
         android:title="Fragments - BD SQLITE - Toolbar" />
+
+    <item
+        android:id="@+id/menu_seccion_5"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Content Provider" />
 </menu>

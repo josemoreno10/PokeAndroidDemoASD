@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class PokemonSQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "poke_db";
-    String sqlCreate = "CREATE TABLE favoritos (nombre TEXT, urlImage TEXT, urlPokemon TEXT)";
+    String sqlCreate = "CREATE TABLE favoritos (_id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, urlImage TEXT, urlPokemon TEXT)";
 
     public PokemonSQLiteHelper(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DB_NAME, factory, version);
