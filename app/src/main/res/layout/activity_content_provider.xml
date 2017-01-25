@@ -1,22 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_content_provider"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:clickable="true"
-    tools:context=".FragmentsActivity"
-    tools:showIn="@layout/activity_main_nav">
+    tools:context="co.com.grupoasd.pokedexdemoasd.ContentProviderActivity">
 
     <!-- Toolbar -->
-    <android.support.v7.widget.Toolbar
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/appbar"
-        android:layout_height="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:minHeight="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
@@ -46,9 +45,9 @@
                     android:id="@+id/tituloRadio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:paddingBottom="10dp"
                     android:text="Seleccione un criterio de busqueda"
-                    android:paddingBottom="10dp" />
+                    android:textColor="?android:attr/textColorPrimary" />
 
                 <RadioButton
                     android:id="@+id/radioButtonPorID"
@@ -77,8 +76,8 @@
             android:layout_below="@+id/cabecera_criterio"
             android:orientation="horizontal"
             android:paddingBottom="16dp"
-            android:paddingRight="16dp"
-            android:paddingLeft="16dp">
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:id="@+id/textView"
@@ -87,7 +86,6 @@
                 android:layout_weight="1"
                 android:text="ID POKEMON"
                 android:textColor="?android:attr/textColorPrimary" />
-
 
             <EditText
                 android:id="@+id/editTextID"
@@ -99,10 +97,17 @@
 
             <ImageButton
                 android:id="@+id/imageButtonBuscar"
+                app:srcCompat="@android:drawable/ic_menu_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_menu_search" />
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/imageButtonDelete"
+                app:srcCompat="@android:drawable/ic_menu_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -111,33 +116,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/contenedor_button"
-            android:layout_below="@+id/cabecera" >
+            android:layout_below="@+id/cabecera">
 
         </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/contenedor_button"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <Button
-                android:text="Previous 20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/buttonPrev"
-                android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/buttonNext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Next 20" />
-        </LinearLayout>
 
     </RelativeLayout>
 

@@ -131,7 +131,7 @@ public class TabsActivityRest extends AppCompatActivity {
 
     private void inicializarProgressDialog() {
         TextView title = new TextView(this);
-        title.setText("Buscando pokemons");
+        title.setText("Buscando favoritosList");
         //title.setBackgroundColor(Color.argb(255, 3, 169, 244));
         title.setPadding(10, 10, 10, 10);
         title.setGravity(Gravity.CENTER);

@@ -96,13 +96,21 @@ public class DetalleFragment extends Fragment {
                             Toast.makeText(getContext(),"Ocurrio un error eliminando favorito", Toast.LENGTH_SHORT).show();
                         }
                     }else{
-                        if(dbController.insertarFavorito(pokemon.getNombre(),pokemon.getPokemonDetalle().getFrontDefaultImage(),pokemon.getUrl())){
+                        if(dbController.insertarFavoritoContentProvider(pokemon.getNombre(),pokemon.getPokemonDetalle().getFrontDefaultImage(),pokemon.getUrl())){
                             favoritosList.add(new Favoritos(pokemon.getNombre(), pokemon.getPokemonDetalle().getFrontDefaultImage(), pokemon.getUrl()));
                             imageViewFav.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite));
                             Toast.makeText(getContext(),"Pokemon agregado a favoritos correctamente", Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(getContext(),"Ocurrio un error guardando favorito", Toast.LENGTH_SHORT).show();
                         }
+
+                        /*if(dbController.insertarFavorito(pokemon.getNombre(),pokemon.getPokemonDetalle().getFrontDefaultImage(),pokemon.getUrl())){
+                            favoritosList.add(new Favoritos(pokemon.getNombre(), pokemon.getPokemonDetalle().getFrontDefaultImage(), pokemon.getUrl()));
+                            imageViewFav.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite));
+                            Toast.makeText(getContext(),"Pokemon agregado a favoritos correctamente", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getContext(),"Ocurrio un error guardando favorito", Toast.LENGTH_SHORT).show();
+                        }*/
                     }
                 }
             });

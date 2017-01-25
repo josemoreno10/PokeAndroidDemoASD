@@ -19,7 +19,7 @@ public class FavoritosProvider extends ContentProvider {
     private static final String uri = "content://co.com.grupoasd.pokedexdemoasd.contentproviders/favoritos";
     public static final Uri CONTENT_URI = Uri.parse(uri);
     private PokemonSQLiteHelper pokemonSQLiteHelper;
-    private static final int BD_VERSION = 1;
+    private static final int BD_VERSION = 2;
     private static final String TABLA_FAVORITOS = "favoritos";
     private static final int FAVORITOS = 1;
     private static final int FAVORITOS_ID = 2;
@@ -42,7 +42,7 @@ public class FavoritosProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         //Si es una consulta a un ID concreto construimos el WHERE
         String where = selection;
-        if(uriMatcher.match(uri) == FAVORITOS_ID){
+        if (uriMatcher.match(uri) == FAVORITOS_ID) {
             where = "_id=" + uri.getLastPathSegment();
         }
         SQLiteDatabase db = pokemonSQLiteHelper.getWritableDatabase();
@@ -56,8 +56,7 @@ public class FavoritosProvider extends ContentProvider {
     public String getType(Uri uri) {
         int match = uriMatcher.match(uri);
 
-        switch (match)
-        {
+        switch (match) {
             case FAVORITOS:
                 return "vnd.android.cursor.dir/vnd.grupoasd.favoritos";
             case FAVORITOS_ID:
@@ -83,7 +82,7 @@ public class FavoritosProvider extends ContentProvider {
         int cont;
         //Si es una consulta a un ID concreto construimos el WHERE
         String where = selection;
-        if(uriMatcher.match(uri) == FAVORITOS_ID){
+        if (uriMatcher.match(uri) == FAVORITOS_ID) {
             where = "_id=" + uri.getLastPathSegment();
         }
         SQLiteDatabase db = pokemonSQLiteHelper.getWritableDatabase();
@@ -97,7 +96,7 @@ public class FavoritosProvider extends ContentProvider {
         int cont;
         //Si es una consulta a un ID concreto construimos el WHERE
         String where = selection;
-        if(uriMatcher.match(uri) == FAVORITOS_ID){
+        if (uriMatcher.match(uri) == FAVORITOS_ID) {
             where = "_id=" + uri.getLastPathSegment();
         }
         SQLiteDatabase db = pokemonSQLiteHelper.getWritableDatabase();

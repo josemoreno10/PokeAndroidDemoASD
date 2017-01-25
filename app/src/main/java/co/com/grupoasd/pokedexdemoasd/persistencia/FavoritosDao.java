@@ -25,7 +25,7 @@ public class FavoritosDao {
     }
 
     FavoritosDao open() throws SQLException {
-        sqLiteHelper = new PokemonSQLiteHelper(context, null, 1);
+        sqLiteHelper = new PokemonSQLiteHelper(context, null, 2);
         database = sqLiteHelper.getWritableDatabase();
         return this;
     }

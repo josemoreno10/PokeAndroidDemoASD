@@ -66,7 +66,6 @@ public class FragmentsActivity extends AppCompatActivity {
         setSupportActionBar(appbar);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_nav_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("LO que sea");
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         radioGroup = (RadioGroup) findViewById(R.id.radio_criterio);
@@ -144,6 +143,10 @@ public class FragmentsActivity extends AppCompatActivity {
                                 intent = new Intent(FragmentsActivity.this, FragmentsActivity.class);
                                 startActivity(intent);
                                 break;
+                            case R.id.menu_seccion_5:
+                                intent = new Intent(FragmentsActivity.this, ContentProviderActivity.class);
+                                startActivity(intent);
+                                break;
                         }
                         drawerLayout.closeDrawers();
                         return true;
@@ -179,7 +182,7 @@ public class FragmentsActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState, outPersistentState);
     }
 
-    public void actionBuscar(String url) {
+    private void actionBuscar(String url) {
         if (radioButtonPorID.isChecked()) {
             if (!textBuscar.getText().toString().equals("")) {
                 int id = Integer.parseInt(textBuscar.getText().toString());

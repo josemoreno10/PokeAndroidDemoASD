@@ -3,6 +3,7 @@
     package="co.com.grupoasd.pokedexdemoasd">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:allowBackup="true"
@@ -10,8 +11,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <provider android:name=".persistencia.FavoritosProvider"
-            android:authorities="co.com.grupoasd.pokedexdemoasd.contentproviders"/>
+        <provider
+            android:name=".persistencia.FavoritosProvider"
+            android:authorities="co.com.grupoasd.pokedexdemoasd.contentproviders" />
 
         <activity android:name=".MainActivity" />
         <activity android:name=".SearchActivity" />
@@ -24,8 +26,10 @@
         </activity>
         <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".TabsActivityRest" />
-        <activity android:name=".FragmentsActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity
+            android:name=".FragmentsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name=".ContentProviderActivity"></activity>
     </application>
 
 </manifest>
