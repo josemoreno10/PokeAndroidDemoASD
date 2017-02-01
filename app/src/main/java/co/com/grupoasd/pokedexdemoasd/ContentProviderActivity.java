@@ -19,6 +19,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
 import java.util.List;
 
 import co.com.grupoasd.pokedexdemoasd.fragments.FavoritosFragment;
@@ -40,6 +44,7 @@ public class ContentProviderActivity extends AppCompatActivity {
     FavoritosFragment favoritosFragment;
     private Toolbar appbar;
     PokemonDBController dbController;
+    InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +88,7 @@ public class ContentProviderActivity extends AppCompatActivity {
             }
         });
         dbController = new PokemonDBController(this);
+        inicializarInterstitialAd();
     }
 
     @Override
@@ -148,6 +154,7 @@ public class ContentProviderActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             dismissProgressDialog();
+            requestNewInterstitial();
             if (result) {
                 if (!favoritosList.isEmpty()) {
                     fragmentManager = getSupportFragmentManager();
@@ -190,5 +197,38 @@ public class ContentProviderActivity extends AppCompatActivity {
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
+    }
+
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("EBE8C2C7AE936D2CF8E6A42E8C40CDD1").build(); //Pruebas
+        //AdRequest adRequest = new AdRequest.Builder().build(); // Produccion
+        try {
+            if (adRequest != null) {
+                mInterstitialAd.loadAd(adRequest);
+            } else {
+                Toast.makeText(this, "Error en los servicios de google",
+                        Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        } catch (NullPointerException e) {
+            Toast.makeText(this, "Error en los servicios de google",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void inicializarInterstitialAd() {
+        // Create the InterstitialAd and set the adUnitId.
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_ad_unit_id));
+        mInterstitialAd.setAdListener(new AdListener() {
+
+            @Override
+            public void onAdLoaded() {
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                }
+            }
+        });
+
     }
 }

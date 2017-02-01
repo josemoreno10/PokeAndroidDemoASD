@@ -22,6 +22,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.List;
 
 import co.com.grupoasd.pokedexdemoasd.R;
@@ -40,6 +43,7 @@ public class FavoritosFragment extends Fragment {
     List<Favoritos> favoritosList;
     AdapterFavoritosRecycler adaptador;
     SharedPreferences prefs;
+
 
     public FavoritosFragment() {
         // Required empty public constructor
@@ -63,6 +67,9 @@ public class FavoritosFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_poke, container, false);
         recView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        AdView mAdView = (AdView) view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("EBE8C2C7AE936D2CF8E6A42E8C40CDD1").build();
+        mAdView.loadAd(adRequest);
         return view;
     }
 

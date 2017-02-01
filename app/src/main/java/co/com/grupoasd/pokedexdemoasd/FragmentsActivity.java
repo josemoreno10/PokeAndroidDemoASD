@@ -144,7 +144,7 @@ public class FragmentsActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 break;
                             case R.id.menu_seccion_5:
-                                intent = new Intent(FragmentsActivity.this, ContentProviderActivity.class);
+                                intent = new Intent(FragmentsActivity.this, LoginActivity.class);
                                 startActivity(intent);
                                 break;
                         }
