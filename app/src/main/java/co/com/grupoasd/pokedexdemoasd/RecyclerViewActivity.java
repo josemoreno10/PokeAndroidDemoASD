@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +32,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements View.OnCl
     private RecyclerView recView;
     private List<Item> datos;
     SharedPreferences prefs;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,9 @@ public class RecyclerViewActivity extends AppCompatActivity implements View.OnCl
         textViewNombre = (TextView) findViewById(R.id.textView);
         recView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recView.setHasFixedSize(true);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.app_name);
         prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
     }
 
@@ -103,6 +108,10 @@ public class RecyclerViewActivity extends AppCompatActivity implements View.OnCl
                 recView.setLayoutManager(new GridLayoutManager(this,3));
                 break;
             case "lista":
+                recView.setLayoutManager(
+                        new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+                break;
+            default:
                 recView.setLayoutManager(
                         new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
                 break;

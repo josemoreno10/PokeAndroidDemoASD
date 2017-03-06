@@ -40,5 +40,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/buttonFragment" />
+
+        <Button
+            android:text="Explorador de Arvhivos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonExplorer" />
     </LinearLayout>
 </RelativeLayout>

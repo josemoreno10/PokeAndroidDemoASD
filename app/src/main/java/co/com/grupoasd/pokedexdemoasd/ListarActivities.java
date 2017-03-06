@@ -12,6 +12,7 @@ public class ListarActivities extends AppCompatActivity {
     Button buttonViewHolder;
     Button buttonAsyncTask;
     Button buttonFragment;
+    Button buttonExplorer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class ListarActivities extends AppCompatActivity {
         buttonViewHolder = (Button) findViewById(R.id.buttonActivityViewHolder);
         buttonAsyncTask = (Button) findViewById(R.id.buttonAsyncTask);
         buttonFragment = (Button) findViewById(R.id.buttonFragment);
+        buttonExplorer = (Button) findViewById(R.id.buttonExplorer);
 
         buttonListView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +53,14 @@ public class ListarActivities extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        buttonExplorer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ListarActivities.this, PoIExplorer.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -62,4 +72,6 @@ public class ListarActivities extends AppCompatActivity {
     public void finish() {
         super.finish();
     }
+
+
 }

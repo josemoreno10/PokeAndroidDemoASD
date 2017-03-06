@@ -90,8 +90,8 @@
         android:id="@+id/contenedor_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/contenedor_button"
-        android:layout_below="@+id/cabecera" >
+        android:layout_below="@+id/cabecera"
+        android:layout_above="@+id/contenedor_button">
 
     </RelativeLayout>
 
